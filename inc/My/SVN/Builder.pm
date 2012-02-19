@@ -95,9 +95,10 @@ sub _default_configure_args {
             $self->install_destination('arch'), 'Alien', 'SVN'
         ),
         PERL   => $^X,
+        '--enable-static' => undef,
     );
 
-    return join ' ', map { "$_=$args{$_}" } sort keys %args;
+    return join ' ', map { $args{$_} ? "$_=$args{$_}" : "$_" } sort keys %args;
 }
 
 sub _run_svn_configure {
